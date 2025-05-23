@@ -40,10 +40,27 @@ INTERVIEW QUESTION
 Difference between Node Selector and Node affinity?
 A. Although the feature are little similar, node affinity grants more granular level of configuration OR provides more flexibility for the Devops engineer which says kube scheduler that you can go with preferred configuration and if you don't find the preferred configuration, you can schedule it anywhere 
 ```
+
+K8 doc for taints and tolerations:
+```
+https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/
+```
+
 3. Taints
 
 Taints are applied to nodes to repel certain pods. They allow nodes to refuse pods unless the pods have a matching toleration.
 Usage: Use kubectl taint command to apply taints to nodes. Include tolerations field in the pod's YAML definition to tolerate specific taints.
+
+```
+Extra Notes: || 
+Taint - Using taint you can decide what's the behaviour of the node during the upgrades. You can taint(unschedule) a particular node as unscheduled so that your node can go to the unscheduled status, u can take that node and perform upgrades_ Hence, that's why master nodes BY DEFAULT ARE TAINTED as no pods can be scheduled on master nodes.
+
+Three types of taints that are most popular-
+Noschedule - Where ur node will go to complete non-schedulable status. ||
+Noexecute - It's little bit dangerous, becoz when u do "Noexecute", all the pods that are on particular node will immediately stop working. ||
+Preferred Noschedule-If u any performance issue with a node, you can take "Preferred noschedule" taint on that particular node where it will be scheduled but in a worst case, if u taint a particular node as "Prefer Noschedule", u might still see some pods running on that particluar node but that is bacuse all ur other nodes are busy and there is no otpion for ur schedular
+
+```
 
 ```
 kubectl taint nodes node1 disktype=ssd:NoSchedule
