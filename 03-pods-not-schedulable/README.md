@@ -35,6 +35,10 @@ spec:
             - ssd
 ```
 
+INTERVIEW QUESTION
+Difference between Node Selector and Node affinity?
+A. Although the feature are little similar, node affinity grants more granular level of configuration OR provides more flexibility for the Devops engineer which says kube scheduler that you can go with preferred configuration and if you don't find the preferred configuration, you can schedule it anywhere 
+
 3. Taints
 
 Taints are applied to nodes to repel certain pods. They allow nodes to refuse pods unless the pods have a matching toleration.
